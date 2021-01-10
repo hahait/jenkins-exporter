@@ -29,3 +29,6 @@
 1. 根据目录中的 Dockerfile 制作镜像
 2. 通过 k8s 运行该镜像, 需要修改项目目录中的 jenkins-exporter.yml; 这里使用了 nodeport 方式暴露了 jenkins-exporter pod 的连接地址给 k8s 外部的 prometheus
 3. 在接入 prometheus 测试没问题后，将项目目录中的 ** Jenkins 构建大盘-1610271187373.json ** 导入到 grafana 中
+
+# 效果图片
+![image](https://github.com/hahait/jenkins-exporter/blob/main/%E6%9E%84%E5%BB%BA%E5%9B%BE%E7%89%87.png)

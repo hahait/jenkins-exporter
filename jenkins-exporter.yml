@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-exporter
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-exporter
+  template:
+    metadata:
+      name: jenkins-exporter
+      labels:
+        app: jenkins-exporter
+    spec:
+      containers:
+      - name: jenkins-exporter
+        env:
+        - name: URL
+          value: "<jenkins 地址>"
+        - name: USER
+          value: "<jenkins 用户名>"
+        - name: PASSWORD
+          value: "<jenkins 密码或 token>"
+        image: <jenkins-exporter 镜像地址> 
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 1Gi
+            cpu: 2
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jenkins-exporter
+  name: jenkins-exporter
+  namespace: jenkins
+spec:
+  ports:
+  - name: http-metrics
+    port: 8888
+    protocol: TCP
+    targetPort: 8888
+    nodePort: 32766
+  selector:
+    app: jenkins-exporter
+  type: NodePort

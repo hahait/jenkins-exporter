@@ -1,5 +1,6 @@
 # jenkins-exporter
 作为 prometheus 的客户端，用于获取 Jenkins 中处于构建中的 build, 以及获取每个 build 信息，目的是在 grafana 中动态展示 jenkins 正在构建的项目、构建耗时、由谁触发的构建、最近的构建历史。  
+
 项目中使用 python-jenkins 这个 jenkins python api 来获取 job 和 build 信息; 使用 jenkins 的 rss 获取最近的构建历史;
 
 ## Metrics 具体如下：

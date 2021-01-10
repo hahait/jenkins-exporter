@@ -2,7 +2,7 @@
 作为 prometheus 的客户端，用于获取 Jenkins 中处于构建中的 build, 以及获取每个 build 信息，目的是在 grafana 中动态展示 jenkins 正在构建的项目、构建耗时、由谁触发的构建、最近的构建历史。
 
 ## Metrics 具体如下：
-### jenkins_job_build_duration 每个 build 构建耗时, label 如下：
+### 1. jenkins_job_build_duration :  每个 build 构建耗时, label 如下：
 1. job_name: 构建的 job 名称
 2. build_number: 构建的序号
 3. building: 是否处于正在构建过程中
@@ -12,10 +12,10 @@
 7. user: 触发构建的用户, 是这个项目的最原始需求
 8. url: 构建的 url
 
-### jenkins_job_build_result 每个 build 的构建结果, 实际 label 在上面的基础上新增如下。因为 PromQL 不支持基于 label 值进行排序和比较，所以额外新增这个 metric
+### 2. jenkins_job_build_result : 每个 build 的构建结果, 实际 label 在上面的基础上新增如下。因为 PromQL 不支持基于 label 值进行排序和比较，所以额外新增这个 metric
 1. in_3hours: 是否是 3 小时内的构建, 便于在 grafana 中展示 3 小时内构建历史
    
-### jenkins_job_building 获取正在进行构建的 job, labels 同上
+### 3. jenkins_job_building : 获取正在进行构建的 job, labels 同上
   
     
 # 运行方式
